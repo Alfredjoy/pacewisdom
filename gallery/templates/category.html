@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<form style="text-align: center;" method="post" action="{% url 'home' %}" enctype="multipart/form-data">
+{% csrf_token %}
+  <h1 style="text-align: center;">Upload Image to {{cats}} Category</h1>
+  <label><b>Name</b></label><br><br>
+    <input type="text"  name="name" required><br><br>
+
+        <label><b>Description</b></label><br><br>
+    <input type="text" placeholder="Enter lastname" name="desc" required><br><br>
+
+  <label><b>Category</b></label><br><br>
+    <input type="text" placeholder="Cayegory" name="category" required><br><br>
+
+
+    <label><b>Image</b></label><br><br>
+    <input type="file" size="10" name="photo" required><br><br>
+
+  <button type="submit" class="btn">Upload</button><br><br>
+
+
+    <hr>
+</form>
+
+
+
+<div class="row">
+  {% for image in images %}
+  <div class="column">
+    <div class="content">
+      <img src="{{image.imageURL}}" alt="{{image.Name}}" width="150px;" height="200px;">
+      <h4>{{image.Name}}</h4>
+      <p>{{image.Desc}}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
